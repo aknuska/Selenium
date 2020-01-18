@@ -6,14 +6,16 @@ public class firstTest {
 
         String actualTitle = "";
 
-        System.out.println("Hello in first class");
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
         WebDriver driver = new ChromeDriver();
 
-        driver.get("https://www.pracuj.pl/");
+        String baseUrl = "https://www.pracuj.pl/";
+        String expectedTitle = "Praca - Pracuj.pl";
+
+        driver.get(baseUrl);
         actualTitle = driver.getTitle();
 
-        if (actualTitle.equals("Praca - Pracuj.pl"))  {
+        if (actualTitle.equals(expectedTitle))  {
             System.out.println("Test Passed!");
         } else {
             System.out.println("Test Failed! " +  actualTitle);
