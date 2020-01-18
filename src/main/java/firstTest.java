@@ -1,24 +1,36 @@
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class firstTest {
-    public static void main(String[] args) {
 
-        String actualTitle = "";
+    private WebDriver driver;
 
+    @Before
+    public void setUp() {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
-        WebDriver driver = new ChromeDriver();
+        driver = new ChromeDriver();
+    }
 
+    @Test
+    public void checkIfPracujPlTitleIsCorrect() {
+        String actualTitle = "";
         String baseUrl = "https://www.pracuj.pl/";
         String expectedTitle = "Praca - Pracuj.pl";
 
         driver.get(baseUrl);
+
         actualTitle = driver.getTitle();
 
         assertThat(actualTitle).isEqualTo(expectedTitle);
+    }
 
+    @After
+    public void tearDown(){
         driver.close();
     }
 }
