@@ -3,12 +3,18 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class secondTest {
     private WebDriver driver;
+    private WebElement emailField;
+    private WebElement passwordField;
+    private WebElement submitButton;
+    private String baseUrl;
+
 
     @Before
     public void setUp() {
@@ -18,12 +24,17 @@ public class secondTest {
 
     @Test
     public void checkIfUserCanLoginOnGuru99() {
-        String baseUrl = "http://demo.guru99.com/test/login.html";
+        baseUrl = "http://demo.guru99.com/test/login.html";
         driver.get(baseUrl);
-        driver.findElement(By.id("email")).sendKeys("abc@gmail.com");
-        driver.findElement(By.id("passwd")).sendKeys("passwd");
 
-        driver.findElement(By.id("SubmitLogin")).submit();
+        emailField = driver.findElement(By.id("email"));
+        emailField.sendKeys("abc@gmail.com");
+
+        passwordField = driver.findElement(By.id("passwd"));
+        passwordField.sendKeys("passwd");
+
+        submitButton = driver.findElement(By.id("SubmitLogin"));
+        submitButton.submit();
 
         assertThat(driver.findElement(By.xpath("/html/body/div[2]/div/div/h3")).getText())
                 .contains("Successfully Logged in...");
