@@ -1,6 +1,8 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class firstTest {
     public static void main(String[] args) {
 
@@ -15,11 +17,8 @@ public class firstTest {
         driver.get(baseUrl);
         actualTitle = driver.getTitle();
 
-        if (actualTitle.equals(expectedTitle))  {
-            System.out.println("Test Passed!");
-        } else {
-            System.out.println("Test Failed! " +  actualTitle);
-        }
+        assertThat(actualTitle).isEqualTo(expectedTitle);
+
         driver.close();
     }
 }
