@@ -28,12 +28,13 @@ public class thirdTest {
         driver.findElement(By.id("inputUserSurname")).sendKeys("Nowak");
         driver.findElement(By.id("inputEmail")).sendKeys("sample@mail.com");
         driver.findElement(By.id("inputEmailConfirm")).sendKeys("sample@mail.com");
-
         driver.findElement(By.id("nextButton")).click();
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("inputPassword"))).sendKeys("adjdsjdjals");
     }
 
     @After
     public void tearDown(){
-        //driver.close();
+        driver.close();
     }
 }
