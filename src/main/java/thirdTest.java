@@ -23,13 +23,17 @@ public class thirdTest {
         driver.get(baseUrl);
 
         WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("inputName")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("inputName"))).sendKeys("Anna");
 
-        driver.findElement(By.id("inputName")).sendKeys("Anna");
+        driver.findElement(By.id("inputUserSurname")).sendKeys("Nowak");
+        driver.findElement(By.id("inputEmail")).sendKeys("sample@mail.com");
+        driver.findElement(By.id("inputEmailConfirm")).sendKeys("sample@mail.com");
+
+        driver.findElement(By.id("nextButton")).click();
     }
 
     @After
     public void tearDown(){
-        driver.close();
+        //driver.close();
     }
 }
