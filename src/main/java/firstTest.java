@@ -10,6 +10,7 @@ public class firstTest {
 
     private WebDriver driver;
 
+    //metoda wywoływana przed kazdym testem
     @Before
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
