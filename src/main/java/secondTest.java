@@ -9,39 +9,49 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class secondTest {
-    private WebDriver driver;
-    private WebElement emailField;
-    private WebElement passwordField;
-    private WebElement submitButton;
-    private String baseUrl;
 
+    WebDriver driver;
 
     @Before
     public void setUp() {
+        //podanie sciezki do chromedrivera
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
+        //wystaruj przegladarke:
         driver = new ChromeDriver();
     }
 
     @Test
-    public void checkIfUserCanLoginOnGuru99() {
-        baseUrl = "http://demo.guru99.com/test/login.html";
+    public void checkIfCanLogInToGuru() {
+        //zadeklaruj strone ktora otwieramy:
+        String baseUrl = "http://demo.guru99.com/test/login.html";
+        //Otworz strone pracuj.pl
         driver.get(baseUrl);
 
-        emailField = driver.findElement(By.id("email"));
-        emailField.sendKeys("abc@gmail.com");
+        WebElement email = driver.findElement(By.id("email"));
+        email.sendKeys("Agnieszka");
 
-        passwordField = driver.findElement(By.id("passwd"));
-        passwordField.sendKeys("passwd");
+        WebElement passwd = driver.findElement(By.id("passwd"));
+        passwd.sendKeys("Haselko");
 
-        submitButton = driver.findElement(By.id("SubmitLogin"));
-        submitButton.submit();
+        WebElement btn = driver.findElement(By.cssSelector("button"));
+        btn.click();
 
-        assertThat(driver.findElement(By.xpath("/html/body/div[2]/div/div/h3")).getText())
-                .contains("Successfully Logged in...");
+        String currentUrl = driver.getCurrentUrl();
+        System.out.println("Otworzyl strone: "+ currentUrl);
+
+        String expectedUrl = "http://demo.guru99.com/test/success.html";
+        assertThat(currentUrl).isEqualTo(expectedUrl);
+
+        String curretTxt = driver.findElement(By.tagName("h3")).getText();
+        System.out.println("" + curretTxt);
+
+        String expectedText = "Successfully Logged in...";
+        assertThat(curretTxt).isEqualTo(expectedText);
     }
+
 
     @After
     public void tearDown(){
-        driver.close();
+        //driver.close();
     }
 }
