@@ -1,31 +1,42 @@
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+public class TestPracujPl {
 
-public class firstTest {
-    public static void main(String[] args) {
+    WebDriver driver;
 
-        String baseURL = "https://www.pracuj.pl/";
-
-
-        System.out.println("Hello in first class");
+    @Before
+    public void before(){
         System.setProperty("webdriver.chrome.driver","src/main/resources/chromedriver");
-        WebDriver driver = new ChromeDriver();
+        driver = new ChromeDriver();
+        String baseURL = "https://www.pracuj.pl/";
         driver.get(baseURL);
+    }
+
+    @Test
+    public void verifyPageTitle(){
 
         String actualTitle = driver.getTitle();
-        System.out.println("tytul z wrorcony:" + actualTitle);
 
         String expectedTitle = "Praca2 - Pracuj.pl";
-
         assertThat(actualTitle).isEqualTo(expectedTitle);
+    }
 
-        driver.close();
-
+    @Test
+    public void veriftPracujPlLogo(){
 
 
     }
+
+    @After
+    public void after(){
+        driver.close();
+    }
+
 
 }
